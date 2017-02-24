@@ -5,7 +5,16 @@ machine:
 checkout:
   post:
     - rm -rf ./hitch/.abuild
-    - sudo docker run -it --rm -v `pwd`/hitch:/build lewispeckover/apkbuilder
+    - docker run -it --rm -v `pwd`/hitch:/build lewispeckover/apkbuilder
 compile:
   override:
-    - sudo docker build .
+    - docker build --rm=false . -t hitch
+test:
+  override:
+    - docker run -it --rm hitch -V
+deployment: 
+  release:
+    tag: /.*/
+    commands:
+      - docker tag hitch lewispeckover/hitch:latest && docker push lewispeckover/hitch:latest
+      - docker tag hitch lewispeckover/hitch:`git describe --tags` && docker push lewispeckover/hitch:`git describe --tags`

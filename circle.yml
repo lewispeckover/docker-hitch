@@ -1,4 +1,7 @@
 --- 
+machine:
+  services:
+    - docker
 checkout:
   post:
     - rm -rf ./hitch/.abuild

@@ -1,5 +1,5 @@
 FROM lewispeckover/base:3.5
-ENTRYPOINT /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
 COPY entrypoint.sh /
 COPY ./hitch/.abuild/*.pub /etc/apk/keys
 RUN chmod 644 /etc/apk/keys/*.pub && mkdir -p /packages

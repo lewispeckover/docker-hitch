@@ -8,7 +8,7 @@ checkout:
     - docker run -it --rm -v `pwd`/hitch:/build lewispeckover/apkbuilder
 compile:
   override:
-    - docker build --rm=false . -t hitch
+    - docker build --rm=false -t hitch .
 test:
   override:
     - docker run -it --rm hitch -V

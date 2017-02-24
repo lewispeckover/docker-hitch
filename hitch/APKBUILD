@@ -1,0 +1,34 @@
+pkgname=hitch
+pkgver=1.4.4
+pkgrel=0
+pkgdesc="hitch is a TLS / SSL endpoint like stunnel"
+url="https://hitch-tls.org/"
+arch="all"
+license="BSD"
+depends="libev"
+depends_dev=""
+makedepends="libev-dev openssl-dev automake autoconf py-docutils bison flex"
+install=""
+subpackages="$pkgname-doc"
+source="https://github.com/varnish/hitch/archive/hitch-$pkgver.tar.gz"
+
+builddir="$pkgname-$pkgname-$pkgver"
+build() {
+	cd "$builddir"
+	./bootstrap || return 1
+	./configure \
+		--build=$CBUILD \
+		--host=$CHOST \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--mandir=/usr/share/man \
+		--localstatedir=/var \
+		|| return 1
+	make || return 1
+}
+
+package() {
+	pwd
+	cd src/"$builddir"
+	make DESTDIR="$pkgdir" install || return 1
+}

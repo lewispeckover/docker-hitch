@@ -1,0 +1,8 @@
+--- 
+checkout:
+  post:
+    - rm -rf ./hitch/.abuild
+    - docker run -it --rm -v `pwd`/hitch:/build lewispeckover/apkbuilder
+  compile:
+    override:
+      - docker build .

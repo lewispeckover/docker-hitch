@@ -1,4 +1,5 @@
-FROM alpine:latest
-RUN apk add --no-cache openssl && apk add --no-cache --repository http://nl.alpinelinux.org/alpine/edge/testing hitch && mkdir -p /etc/hitch
-COPY run.sh /run.sh
-ENTRYPOINT ["/run.sh"]
+FROM lewispeckover/base:3.5
+ADD ./hitch/.abuild/*.pub /etc/apk/keys
+RUN chmod 644 /etc/apk/keys/*.pub && mkdir -p /packages
+ADD ./hitch/packages/x86_64/*.apk /packages/
+RUN apk add --no-cache /packages/*.apk && rm -rf /packages

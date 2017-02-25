@@ -32,3 +32,6 @@ package() {
 	cd src/"$builddir"
 	make DESTDIR="$pkgdir" install || return 1
 }
+md5sums="3f5133e685f8f6a9dbe710b604eb8e11  hitch-1.4.4.tar.gz"
+sha256sums="3c889637e1bc66010b8243fc91b9e26e134f6be77f38a770773dbbbb4dacdefc  hitch-1.4.4.tar.gz"
+sha512sums="0b4d8a55176edcfe4748a04a7a66d1a53b1248b714c4ffb956953a236b4f983568f117e27711a67ea13d5d05cc4fd47e26191584a2636f630a67b28318c221a6  hitch-1.4.4.tar.gz"

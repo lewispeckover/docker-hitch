@@ -4,8 +4,7 @@ machine:
     - docker
 checkout:
   post:
-    - rm -rf ./hitch/.abuild
-    - docker run -it --rm -v `pwd`/hitch:/build lewispeckover/apkbuilder
+    - ./build.sh
 compile:
   override:
     - docker build --rm=false -t hitch .
